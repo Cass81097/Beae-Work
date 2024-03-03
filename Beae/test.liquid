@@ -1,0 +1,346 @@
+{% assign beae_root_url = routes.root_url %}
+{% if beae_root_url != '/' %}
+  {% assign beae_root_url = routes.root_url | append: '/' %}
+{% endif %}
+{% capture section_id %}beae-accordion-section{% endcapture -%}
+{%- if section_id == section.id -%}
+  {%- if shop.metafields.beae.global_css %}
+    <!-- BEAE-EMBED -->
+    <link href="data:text/css;base64,{{-shop.metafields.beae.global_css-}}" rel="stylesheet" id="beae-global-css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gOxMGMgqQH8iYyQE8rmgpaokSxR+wvz+8BZd5tC5JGwBkzpf+AfcFzTcLHTtE+9L" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIeTzDf+ThKiIeF5eP2ujX5xXh8VFiZuKwMp3e3I1yHv6gX/xxh9Xtg9" crossorigin="anonymous"></script>
+    <!-- /BEAE-EMBED -->
+  {% endif %}
+  {{ content_for_header }}
+  {% render 'beae_header', BEAE_THEME: true -%}
+{%- endif -%}
+<link rel="stylesheet" media="all" href="{{"beae-65de8baab650258951018442.css" | asset_url}}">
+{%- unless includeBeaeJquery %}
+  <script type="text/javascript" src="https://cdn.beae.com/vendors/js-v2/jquery.min.js" defer></script>
+  {% assign includeBeaeJquery = true -%}
+{%- endunless %}
+
+<script type="text/javascript" id="beae-page-info">
+  window.BEAE = window.BEAE || {};
+  window.BEAE.SECTION = {
+    template_id: '65de8baab650258951018442',
+    title: 'accordion section',
+    type: 'section',
+    slug: 'beae-accordion-section',
+    plan_id: 4,
+  };
+</script>
+<div class="beae-builder">
+  <div class="beae-sections">
+    <style type="text/css">
+      .beae-bg-lazy {
+        background-image: url('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==') !important;
+        background-repeat: repeat !important;
+        background-color: #fafafa !important;
+      }
+      .beae-swiper-container:not(.beae-swiper-interactived) {
+        visibility: hidden;
+      }
+    </style>
+    <script type="text/javascript">
+      (function(){let f=Element.prototype.appendChild;Element.prototype.appendChild=function(){if(arguments[0].tagName=='SCRIPT'){arguments[0].removeAttribute('async');arguments[0].setAttribute('defer','')}return f.apply(this,arguments)};let resizeImgs=[],beaeLazy=(selector)=>{let lazys=[].slice.call(document.querySelectorAll(selector));if("IntersectionObserver"in window){let lazyObserver=new IntersectionObserver(function(entries,observer){entries.forEach(function(entry){if(entry.isIntersecting){if(entry.target.classList.contains('beae-bg-lazy')){entry.target.classList.remove("beae-bg-lazy");lazyObserver.unobserve(entry.target)}if(entry.target.classList.contains('beae-img-lazy')){entry.target.removeAttribute("loading");entry.target.classList.remove("beae-img-lazy");if(entry.target.getAttribute('data-src')){entry.target.setAttribute('src',entry.target.getAttribute('data-src'));entry.target.removeAttribute("data-src")}if(entry.target.getAttribute('data-srcset')){entry.target.setAttribute('srcset',entry.target.getAttribute('data-srcset'));entry.target.removeAttribute("data-srcset");if(entry.target.getAttribute('sizes')=='0px'){buildLazy(entry.target)}}lazyObserver.unobserve(entry.target)}if(entry.target.classList.contains('beae-iframe-lazy')){entry.target.classList.remove("beae-iframe-lazy");entry.target.setAttribute('src',entry.target.getAttribute('data-src'));entry.target.removeAttribute('data-src')}}})});lazys.forEach(function(lazy){if(lazy.tagName=='IMG'||lazy.tagName=='SOURCE'&&lazy.getAttribute('data-src')){buildLazy(lazy);resizeImgs.push(lazy)}if(!lazy.inited){lazyObserver.observe(lazy);lazy.inited=true}})}},buildLazy=(lazy)=>{let size=lazy.tagName=='IMG'?lazy.offsetWidth:lazy.parentNode.offsetWidth,prx=lazy.classList.contains('beae-img-lazy')?'data-':'',src=lazy.getAttribute(prx+'src'),ratio=1,height=src.match(/height=([\d]+)/)?src.match(/height=([\d]+)/)[1]:'',width=src.match(/width=([\d]+)/)?src.match(/width=([\d]+)/)[1]:'',crop=src.match(/crop=([\w]+)/)?'&crop='+src.match(/crop=([\w]+)/)[1]:'',srcset='';if(size==0){function getVisible(child){try{var node=child.parentNode;while(node!=null){if(window.getComputedStyle(node).display=='none'){return node}node=node.parentNode}}catch(error){}return null}const parent=getVisible(lazy);if(parent){let oldDisplay=parent.style.display;parent.style.display='block';size=lazy.tagName=='IMG'?lazy.offsetWidth:lazy.parentNode.offsetWidth;parent.style.display=oldDisplay}if(size==0){size=500}}src=src.replace(/(https:\/\/via.placeholder.com\/[\d]*x[\d]*)([\s\S]*)/,"$1").replace(/_([\d]*x[\d]*)\.(jpg|png|gif|svg|webp|jpeg)/,".$2").split('?')[0];if(height&&width){if(width<size){size=width}ratio=height/width;srcset=src+'?width='+size+'&height='+size*ratio+crop+' 1x, '+src+'?width='+(size*2)+'&height='+(size*ratio*2)+crop+' 2x'}else{srcset=src+'?width='+size+crop+' 1x, '+src+'?width='+(size*2)+crop+' 2x'}lazy.setAttribute('sizes',size+'px');lazy.setAttribute(prx+'srcset',srcset)},interactive=()=>{window.removeEventListener('scroll',interactive);document.removeEventListener('mousemove',interactive);if(window.innerWidth<=767){beaeLazy(".beae-bg-lazy, .beae-img-lazy, .beae-iframe-lazy")}else{beaeLazy(".beae-iframe-lazy")}};{% if request.design_mode %} if(!window.beaeLazy) { window.beaeLazy = beaeLazy; document.querySelectorAll('.beae-swiper-container').forEach(sw => {sw.classList.add('beae-swiper-interactived')});};{% endif %};document.addEventListener("DOMContentLoaded",function(){window.addEventListener('scroll',interactive);document.addEventListener('mousemove',interactive);beaeLazy(".beae-img-lazy, .beae-bg-lazy");window.beaeLazy=beaeLazy;document.querySelectorAll('.beae-swiper-container').forEach(sw=>{sw.classList.add('beae-swiper-interactived')})});let deboundTimer;window.addEventListener('resize',()=>{clearTimeout(deboundTimer);deboundTimer=setTimeout(()=>{if(resizeImgs.length){resizeImgs.forEach(img=>buildLazy(img))}},250)})})()
+    </script>
+    {% capture lzsvg %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000px' height='1000px' fill='%23ccc'%3E%3Crect x='0' y='0' width='1000' height='1000' /%3E%3C/svg%3E{% endcapture %}
+    <section class="beae-row beae-core beae-section beae-obfk6az8" data-beaeis="section">
+      <div class="core__row--columns">
+        <div
+          class="beae-column beae-core core__column--first core__column--last beae-678bp0js"
+          data-beaeis="column"
+          style="z-index: 1; outline-offset: -1px;"
+        >
+          <div class="core__column--wrapper">
+            <div class="core__blocks" data-beaeis="blocks">
+              <div class="core__blocks--body">
+                <div
+                  class="beae-block beae-core core__block elmspace beae-rde9gkol"
+                  data-beaeis="block"
+                  data-core-is="group"
+                >
+                  <div class="beae-core beae-group core__block beae-k4ulahe4">
+                    <div class="core__group--wrapper accordion__wrapper beae__element beae__accordion" data-r="">
+                      <div class="core__group--items">
+                        <div id="" class="core__group--item accordion__item beae-item-active" data-id="beae-iz5cb15z">
+                          <div class="accordion__title beae-items beae-item-active">
+                            <div class="accordion_nav--icon beae-items--icon" style="order: 1;">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="feather feather-plus"
+                              >
+                                <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </div>
+                            <div class="accordion_nav--icon beae-items--icon beae-items-icon-active" style="order: 1;">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="feather feather-minus"
+                              >
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </div>
+                            <div class="accordion__title-text beae-items--text">
+                              {{ 'sections.beae-accordion-section.be424132807_html' | t }}
+                            </div>
+                          </div>
+                          <div class="core__group--body accordion__body">
+                            <div class="core__blocks" data-beaeis="blocks">
+                              <div class="core__blocks--body">
+                                <div
+                                  class="beae-block beae-core core__block elmspace beae-sq3gho40"
+                                  data-beaeis="block"
+                                  data-core-is="block"
+                                >
+                                  <div class="beae__element beae-element element__text" deep="1">
+                                    <div class="beae-core core__microelement mce--text core__micro--text">
+                                      <div class="mce--wrp" data-beaeis="micro">
+                                        <div class="beae-mce__text text-content beae-html" placeholder="Enter text ...">
+                                          {{ 'sections.beae-accordion-section.be503048757_html' | t }}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="" class="core__group--item accordion__item" data-id="beae-1oq66xxw">
+                          <div class="accordion__title beae-items">
+                            <div class="accordion_nav--icon beae-items--icon" style="order: 1;">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="feather feather-plus"
+                              >
+                                <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </div>
+                            <div class="accordion_nav--icon beae-items--icon beae-items-icon-active" style="order: 1;">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="feather feather-minus"
+                              >
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </div>
+                            <div class="accordion__title-text beae-items--text">
+                              {{ 'sections.beae-accordion-section.be424132806_html' | t }}
+                            </div>
+                          </div>
+                          <div class="core__group--body accordion__body">
+                            <div class="core__blocks" data-beaeis="blocks">
+                              <div class="core__blocks--body">
+                                <div
+                                  class="beae-block beae-core core__block elmspace beae-449ygsw3"
+                                  data-beaeis="block"
+                                  data-core-is="block"
+                                >
+                                  <div class="beae__element beae-element element__text" deep="1">
+                                    <div class="beae-core core__microelement mce--text core__micro--text">
+                                      <div class="mce--wrp" data-beaeis="micro">
+                                        <div class="beae-mce__text text-content beae-html" placeholder="Enter text ...">
+                                          {{ 'sections.beae-accordion-section.be503048757_html' | t }}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="" class="core__group--item accordion__item" data-id="beae-4nr5jn8f">
+                          <div class="accordion__title beae-items">
+                            <div class="accordion_nav--icon beae-items--icon" style="order: 1;">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="feather feather-plus"
+                              >
+                                <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </div>
+                            <div class="accordion_nav--icon beae-items--icon beae-items-icon-active" style="order: 1;">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="feather feather-minus"
+                              >
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                              </svg>
+                            </div>
+                            <div class="accordion__title-text beae-items--text">
+                              {{ 'sections.beae-accordion-section.be424132805_html' | t }}
+                            </div>
+                          </div>
+                          <div class="core__group--body accordion__body">
+                            <div class="core__blocks" data-beaeis="blocks">
+                              <div class="core__blocks--body">
+                                <div
+                                  class="beae-block beae-core core__block elmspace beae-481yp6ls"
+                                  data-beaeis="block"
+                                  data-core-is="block"
+                                >
+                                  <div class="beae__element beae-element element__text" deep="1">
+                                    <div class="beae-core core__microelement mce--text core__micro--text">
+                                      <div class="mce--wrp" data-beaeis="micro">
+                                        <div class="beae-mce__text text-content beae-html" placeholder="Enter text ...">
+                                          {{ 'sections.beae-accordion-section.be503048757_html' | t }}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="beae-row beae-core beae-section beae-0d06h9yo" data-beaeis="section">
+      {% comment %} <div class="core__row--columns">
+        <div
+          class="beae-column beae-core core__column--first core__column--last beae-lt79ss6b"
+          data-beaeis="column"
+          style="z-index: 1; outline-offset: -1px;"
+        >
+          <div class="core__column--wrapper"><div class="core__blocks" data-beaeis="blocks"></div></div>
+        </div>
+      </div> {% endcomment %}
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              Accordion Item #1
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              Accordion Item #2
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              Accordion Item #3
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- -This page has been built by Beae Builder (www.beae.com)- -->
+  </div>
+</div>
+{% if section_id == section.id %}{% endif %}
+<script
+  type="text/javascript"
+  id="beae-vendors-section_helper"
+  src="https://cdn.beae.com/vendors/js/section-helper.js"
+  async
+></script>
+<script src="{{'beae-65de8baab650258951018442.js'  | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "BEAE BUILDER APP",
+  "locales": {
+    "en": {
+      "be424132807_html": "Accordion 1",
+      "be424132806_html": "Accordion 2",
+      "be424132805_html": "Accordion 3",
+      "be503048757_html": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "The section was generated by BEAE BUILDER",
+      "info": "\n                        Beae is a flexible page builder app on Shopify AppStore.\n                        It provides 100+ Shopify Elements and pre-built templates library, \n                        so you can build unlimited pages that you can imagine with it.\n                    "
+    },
+    {
+      "type": "header",
+      "content": "[EDIT WITH BEAE APP \u2192](https:\/\/beae-anhtruong.myshopify.com\/admin\/apps\/beae-flexible-page-builder\/shop\/builder\/&id=65de8baab650258951018442&page=section)",
+      "info": "(*You must install the app to start editing this section [Learn more](https:\/\/docs.beae.com\/en\/article\/quick-start-guide-dkoesy\/))"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "accordion section"
+    }
+  ]
+}
+{% endschema %}

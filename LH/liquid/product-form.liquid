@@ -1,0 +1,300 @@
+<form class="lh-product-form @liquid('form_type')" method="POST" accept-charset="utf-8" enctype="multipart/form-data"  action="/cart/add" data-pid="@liquid('product_id')">
+	<div class="lh-wrap-variant" data-variants-size="@liquid('variants_size')">
+		@liquid('main_swatch_images')
+		@liquid('other_swatch')
+		<div class="lh-quantity">
+			<div class="meta">
+				<label title="">@lang(section.settings.trans_quantity)
+				</label>
+			</div>
+			<div class="lh-quantity-form quantity-form lh-flex lh-flex-wrap">
+				 <div class="lh-quantity_form">
+						<div class="lh-control">
+							@liquid('quantity')
+							 <a href="javascript:;" class="lh-btn-number lh-qtyminus lh-quantity-minus" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'));return false"  title=""> </a>
+							 <a href="javascript:;" class="lh-btn-number lh-qtyplus lh-quantity-plus" onclick="this.parentNode.querySelector('input[type=number]').stepUp();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'));return false" title=""></a>
+						</div>
+				 </div>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+   <div class="lh-option-wrappers show-swatch-no" >
+       <select name="id"  id="product-select-@liquid('product_id')" style="display: none">
+          @liquid('product_options')
+      </select>
+    </div>
+
+   <div class="lh-cart-button-group">
+   	<div class="cart-form lh-d-flex lh-flex-wrap ">
+			@if(section.settings.enable_external == 'no' || section.settings.external_link == '')
+				<button type="submit" class="lh-add_to_cart lh-bt lh-bt-primary" data-add-cart="@attr(section.settings.trans_add_to_cart)" data-pre-order="@attr(section.settings.trans_pre_order)">
+					@liquid('lang_addcart')
+				</button>
+			@else
+				<a href="@liquid('external_link')" class="lh-external lh-bt lh-bt-primary lh-col">
+					@lang(section.settings.trans_external)
+				</a>
+			@endif
+		</div>
+		<div class="clearfix"></div>
+		@if(section.settings.enable_buynow === 'yes')
+		<div class="lh-d-flex lh-flex-wrap lh-wrap-buynow">
+			    <button class="lh-buy-now bt lh-bt-primary lh-bt-type_01 lh-col">
+					@lang(section.settings.trans_buynow)
+			    </button>
+		</div>
+		@endif
+		<div class="lh-block-custom lh-custom-html">@lang(section.settings.c_html_addcart)</div>
+		<div class="clearfix"></div>
+		<div class="lh-wl-sizeguide">
+			<!--  @if(section.settings.size_guide_content)
+				 <div class="lh-wrap-size-chart">
+						 <a href="javascript:;" class="lh-size-chart" data-modal="modal-size-guild" data-id="modal-size-guild-@liquid('product_id')">
+							 <svg version="1.1" width="24" height="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+ 								 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+	 							<path fill="currentColor" d="M71.5,5.1c-0.2-2.3-2-4.1-4.3-4.1H32.7l-0.2,0c-2.3,0.2-4.1,2-4.1,4.3v89.4l0,0.2c0.2,2.3,2,4.1,4.3,4.1h34.5
+	 								c2.4,0,4.3-1.9,4.3-4.3V5.3L71.5,5.1z M66.1,93.5H33.9v-4.1h9c1.5,0,2.8-1.2,2.8-2.8s-1.2-2.8-2.8-2.8h-9v-8.9h14.9
+	 								c1.5,0,2.8-1.2,2.8-2.8s-1.2-2.8-2.8-2.8H33.9v-9.1l9.1,0.1c0,0,0,0,0,0c1.5,0,2.7-1.2,2.7-2.7c0-1.5-1.2-2.8-2.7-2.8l-9.1-0.1v-8.8
+	 								h14.9c1.5,0,2.8-1.2,2.8-2.8s-1.2-2.8-2.8-2.8H33.9v-8.9l9.1-0.1c1.5,0,2.7-1.2,2.7-2.8c0-1.5-1.3-2.7-2.8-2.7l-9.1,0.1v-8.9
+	 								l14.9-0.1c1.5,0,2.7-1.3,2.7-2.8c0-1.5-1.3-2.7-2.8-2.7l-14.8,0.1V6.5h32.1V93.5z"></path>
+	 							</svg>
+						<span class="entry-title">@lang(section.settings.title_size)</span>
+					 </a>
+				 </div>
+			 @endif -->
+			 @if(section.settings.shipping.length && section.settings.shipping[0].value)
+				 <div class="lh-wrap-shipping">
+					 <a class="lh-shipping" href="javascript:void(0)" data-id="modal-shipping-@liquid('product_id')">
+						 <svg version="1.1" width="24" height="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						 	 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+						 <path fill="currentColor" d="M86.5,17.6H41c-3.7,0-6.8,3-6.8,6.8v7.3H17.8c-1.9,0-3.6,1.1-4.3,2.9L10.8,41l-4,9.4v3.3v13c0,2.6,2.1,4.8,4.8,4.8h1.1
+						 	c0,0.1,0,0.2,0,0.3c0,5.9,4.8,10.8,10.8,10.8s10.8-4.8,10.8-10.8c0-0.1,0-0.2,0-0.3h0.2H37h26.6c0,0.1,0,0.2,0,0.3
+						 	c0,5.9,4.8,10.8,10.8,10.8S85,77.5,85,71.6c0-0.1,0-0.2,0-0.3h4.5c2.1,0,3.8-1.6,3.8-3.8V24.4C93.3,20.7,90.2,17.6,86.5,17.6z
+						 	 M18.3,37.1h15.9v11H13.7L18.3,37.1z M23.3,76.9c-2.9,0-5.3-2.4-5.3-5.3s2.4-5.3,5.3-5.3s5.3,2.4,5.3,5.3S26.2,76.9,23.3,76.9z
+						 	 M32.4,65.9c-1.9-3-5.3-5-9.1-5s-7.2,2-9.1,5h-2V53.6h22v12.2h-1.8V65.9z M74.3,76.9c-2.9,0-5.3-2.4-5.3-5.3s2.4-5.3,5.3-5.3
+						 	s5.3,2.4,5.3,5.3S77.2,76.9,74.3,76.9z M87.8,65.9h-4.4c-1.9-3-5.3-5-9.1-5s-7.2,2-9.1,5H39.8V53.6v-22V23h48.1L87.8,65.9L87.8,65.9
+						 	z"></path>
+						 </svg>
+						 @lang(section.settings.trans_shipping)
+					 </a>
+				 </div>
+			 @endif
+			 @if(section.settings.use_wishlist == 'yes')
+				 <div class="lh-wrap-wishlist">
+				 	@liquid("wishlist")
+				 </div>
+			 @endif
+		 </div>
+   </div>
+</form>
+@liquid('product_json')
+
+@javascript
+var _this = jQuery(this),
+    $this = jQuery(_this).closest('.lh-product-single'),
+    slide = jQuery($this).find('.block-slide-lg');
+
+var id = $this.data('pid'),
+    money_format = decodeURIComponent($this.data('moneyFormat')).replace(/\+/g, ' ');
+var current_variant = null;
+if (window.LAYOUTHUB_LIVE) {
+    _this.find('.lh-add_to_cart,.lh-buy-now').click(function(event) {
+        event.preventDefault();
+    });
+} else {
+    _this.find('.lh-buy-now').click(function(event) {
+        event.preventDefault();
+        var $form = $this.find('form');
+        var quantity = $form.find('[name="quantity"]').val();
+        var id = $form.find('[name="id"]').val();
+        location.href = "/cart/" + id + ':' + quantity;
+    });
+}
+_this.find('.lh-size-chart,.lh-shipping').click(function(e) {
+    e.preventDefault();
+    _this.closest('.lh-product-single').find('#' + $(this).data('id')).fadeToggle(300);
+});
+
+function hideSelectbox() {
+    _this.find('.lh-swatch-variations').map(function() {
+        var index = jQuery(this).data('optionIndex');
+        _this.find('.lh-option-wrappers .selector-wrapper:eq(' + index + ')').hide();
+    });
+}
+
+function ProductOptionsInit() {
+    if (!window.Shopify || !window.Shopify.OptionSelectors) return 1;
+    if (!id || !document.getElementById('lh-product-json-' + id)) return;
+    var $product_json = null;
+    try {
+        $product_json = JSON.parse(document.getElementById('lh-product-json-' + id).innerHTML)
+    } catch (e) {};
+    if (!$product_json) return 0;
+    var productSelect = new window.Shopify.OptionSelectors('product-select-' + id, {
+        product: $product_json,
+        onVariantSelected: selectCallback,
+        enableHistoryState: (window.LAYOUTHUB_LIVE) ? false : $this.data('vid_url')
+    });
+    hideSelectbox();
+    $this.find('#product-select-' + id).on('swatch', function(evt, vid) {
+        productSelect.selectVariant(evt.target.getAttribute('vid'));
+    });
+    var $format = $this.data('moneyFormat');
+
+    function selectCallback(variant, selector) {
+        current_variant = variant;
+        setMaxQuantity(current_variant);
+        var label_sale = $this.find('.lh-sale_label'),
+        	progress 	= $this.find('.lh-product-progress'),
+            add_cart = $this.find('.lh-add_to_cart'),
+						sold_out 		= $this.find('.lh-sold-out-title');
+        if (variant) {
+            try {
+                if (variant.featured_image && slide[0].swiper) {
+                    var index = $this.find('.block-slide-sm .items-img[data-variant_id*="' + variant.id + '"]').index(),
+                        current = slide[0].swiper.realIndex;
+                    if (index != current)
+                        slide[0].swiper.slideTo(index, 200);
+                    else
+                        throw "not change";
+                } else {
+                    throw 'erorr';
+                }
+            } catch (e) {
+                $this.removeClass('lh-onchange-variant');
+                //console.info(e);
+            }
+        } else {
+            _this.find('.lh-btn-cart').attr('disabled', 'disabled');
+            _this.find('.lh-cart-button-group').attr('data-available', false);
+            sold_out.css({"display":"block","margin":0}).find('span').attr("data-lhi","trans_unavai").html(section.settings.trans_unavai);
+            $this.find('.lh-content-summary').attr('data-hidden', true);
+            $this.find('.lh-compare-at-price,.lh-price').css('display', 'none');
+            label_sale.css('display', 'none');
+            progress.removeClass("lh-show");
+            $this.removeClass('lh-onchange-variant');
+            return;
+        }
+        var quantity = variant.inventory_quantity,
+            policy = variant.inventory_policy;
+        var isSale = variant.available && (current_variant.price < current_variant.compare_at_price);
+        if(progress.length && quantity){
+			var min = parseInt(progress.data('minShow')),
+					total = parseInt(progress.data('total')),
+					left = variant.inventory_quantity,
+					is_show = left > 0 && left < min;
+			if(is_show) progress.addClass("lh-show")
+			else progress.removeClass("lh-show");
+			if(is_show){
+				progress.find('.lh-text-bar span').text(left);
+				progress.find('.lh-progress-bar').css('width',Math.round(left * 100 / total) + "%");
+			}
+		}else progress.removeClass("lh-show");
+        if (quantity < 1 && policy == 'continue') {
+            add_cart.addClass('lh-pre-order').attr('data-lhi', 'trans_pre_order').text(add_cart.data('preOrder'));
+        } else {
+            add_cart.removeClass('lh-pre-order').attr('data-lhi', 'trans_add_to_cart').text(add_cart.data('addCart'));
+        }
+        $this.find('.lh-content-summary').attr('data-hidden', !isSale);
+        sold_out.css({"display" : variant.available ? 'none':'block' ,"margin-left":15}).find('span').attr("data-lhi","trans_outstock").html(section.settings.trans_outstock);
+        $this.find('.lh-price,.lh-countdown-product').css('display', 'block');
+        $this.find('.lh-btn-cart').removeAttr('disabled');
+        _this.find('.lh-cart-button-group').attr('data-available', variant.available);
+        $this.find('.lh-price').html(window.HUB.formatMoney(variant.price, money_format));
+        $this.find('.lh-product-sku .lh-sku').html(variant.sku ? variant.sku : "N/A");
+        if (isSale) {
+            label_sale.css('display', 'block');
+            $this.find('.lh-compare-at-price').css('display', 'block').html(window.HUB.formatMoney(variant.compare_at_price, money_format));
+        } else {
+            label_sale.css('display', 'none');
+            $this.find('.lh-compare-at-price').css('display', 'none');
+        }
+
+
+        if (variant.inventory_management == "shopify") {
+
+            $this.find('.lh-title-instock').css('display', 'block');
+        } else {
+            $this.find('.lh-title-instock').css('display', 'none');
+        }
+        if (variant.options.length) {
+            for (var i = 0; i < variant.options.length; i++) {
+                var wrap_swatch = $this.find('[data-option-index="' + i + '"]');
+                if (wrap_swatch.hasClass('lh-swatch-simple')) {
+                    wrap_swatch.find('.lh-selected-text').text(variant.options[i]);
+                }
+                wrap_swatch.find(`[data-value='${variant.options[i].replace(/'/g, "'")}']`).addClass('active').siblings().removeClass('active');
+            }
+        }
+    };
+    $this.find('.lh-swatch-select').on('click', function() {
+        var _this = $(this);
+        if (!_this.hasClass('active') && !$this.hasClass('lh-onchange-variant')) {
+            $this.addClass('lh-onchange-variant');
+            _this.siblings('li').removeClass('active');
+            _this.addClass('active');
+            var index = _this.closest('.swatch-index').attr('data-option-index');
+            $this.find('select#product-select-' + id + '-option-' + index).val(_this.data('value')).trigger('change');
+        }
+    });
+}
+
+ProductOptionsInit();
+setDefaultTextCombobox();
+
+function setDefaultTextCombobox() {
+    _this.find('.lh-wrap-combobox').each(function() {
+        var selected_text = $(this).find('.lh-selected-text');
+        selected_text.text($(this).find('.lh-swatch-select.active span').text());
+    });
+}
+eventCombobox();
+
+function eventCombobox() {
+    _this.find('.lh-swatch-simple').each(function() {
+        var __this = $(this),
+            index = __this.data('option-index'),
+            option_select = $this.find('select#product-select-' + id + '-option-' + index),
+            wrap_cb = __this.find('.lh-wrap-combobox');
+        __this.find('.lh-selected-text').click(function() {
+            __this.find('.list-swatch-items').slideToggle(200);
+            __this.toggleClass('lh-show');
+            __this.siblings('.lh-show').removeClass('lh-show').find('.list-swatch-items').slideUp(100);
+        });
+        __this.find('.list-swatch-items .lh-swatch-select').click(function() {
+            var val = $(this).data('value');
+            option_select.val(val).trigger('change');
+            $(this).parent().slideUp(100);
+            __this.find('.lh-selected-text').text(val);
+            __this.removeClass('lh-show');
+        });
+    });
+    _this.find('.lh-swatch-simple').mousedown(function(e) {
+        var __this = $(e.target),
+            block_variant = __this.closest('.lh-swatch-simple');
+        if (block_variant.hasClass('lh-show') && __this.is('.lh-wrap-combobox')) {
+            block_variant.removeClass('lh-show').find('.list-swatch-items').slideUp(100)
+        }
+    })
+}
+
+function setMaxQuantity(variant) {
+    var input = $this.find('.lh-control input[name="quantity"]');
+    try {
+        var max = 9999;
+        if (variant.available) {
+            if (variant.inventory_management && variant.inventory_policy == 'deny')
+                max = variant.inventory_quantity
+        } else max = 0;
+        var value = parseInt(input.val());
+        input.attr('max', max);
+        if (value > max) {
+            input.val(max);
+        } else if (value == 0 && max > 0) {
+            input.val(1);
+        }
+    } catch (err) { input.attr('max', 0);
+        input.val(0) }
+}
+@endjavascript

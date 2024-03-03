@@ -1,0 +1,181 @@
+@media only screen and (max-width: 768px) {
+    .beae-product-single__media--image.beae-swiper-slide {
+        height: 250px !important;
+    }
+
+    .beae-image-default {
+        object-fit: contain !important
+    }
+
+    .beae-product-single__media--thumbs {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .beae-shopify__collection-list--item::marker {
+        color: #F5F5F5 !important
+    }
+
+    .beae-shopify__collection-list--item:hover::marker {
+        color: #e3e3e3 !important;
+    }
+}
+
+.select-wrapper::after {
+    content: url('https://static.thenounproject.com/png/1123247-200.png');
+    position: absolute !important;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.single-option-selector {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+}
+
+.selector-wrapper {
+    position: relative !important;
+    display: inline-block !important;
+    width: 100%;
+}
+
+.instafeed-container:nth-child(11),
+.instafeed-container:nth-child(12) {
+    display: none !important;
+}
+
+.instafeed-container {
+    width: 25% !important;
+    padding-top: 25% !important;
+}
+
+.beae-fw32wv1q,
+.beae-4uulrset,
+.beae-23inry3c,
+.beae-u0iwg7gh,
+.beae-73cyn0va {
+    margin-top: 0px !important
+}
+
+
+
+.mce--wrp .beae-mce__button {
+    font-family: 'GreycliffCF-Medium' !important;
+}
+
+@media only screen and (min-width: 1024px) {
+    .beae-oa2uuvks {
+        display: none !important;
+    }
+}
+
+.beae-7ohg3ayv {
+    margin-top: unset !important;
+}
+
+div.core__blocks--body>div.beae-block+div.beae-block.elmspace {
+    margin-top: 0px !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .beae-core.beae-za99m4bq {
+        margin-top: -100px;
+    }
+
+    .beae-v0m6jc2m {
+        margin-top: -100px
+    }
+}
+
+.lh-flex-aic .lh-col-md-6:nth-child(1) {
+    padding-left: 80px !important;
+}
+
+.jdgm-prev-badge .jdgm-prev-badge__stars {
+    background: unset;   
+}
+
+.product-name.lh-product-title {
+    text-shadow: unset;
+    font-size: xx-large;
+    font-weight: 600;
+    width: 400px;
+    margin-top: 20px;
+    line-height: 35px;
+}
+
+.cart-form.lh-d-flex.lh-flex-wrap a {
+    margin-top: 10px;
+}
+
+.cart-form.lh-d-flex.lh-flex-wrap button {
+    border-radius: 5px;
+}
+
+.lh-row.lh-flex-aic .lh-col-md-6:nth-child(1) {
+    margin-left: 80px;
+}
+
+.lh-quantity_form .lh-control {
+    border-radius: 20px;
+    border: 2px solid blue;
+}
+
+.lh-quantity_form .lh-control input {
+    color: blue !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    padding: 1px 42px !important;
+}
+
+.lh-quantity_form .lh-control a::before {
+    height: 2px !important;
+}
+
+.lh-quantity_form .lh-control a {
+    border: none !important;
+    color: blue !important;
+}
+
+.list-swatch-items .lh-swatch-select {
+    border-radius: 20px !important;
+    background-color: white !important;
+    min-height: unset;
+    border: 1px solid #0044C2 !important;
+    background-image: unset !important;
+    color: black !important;
+}
+
+.list-swatch-items span {
+    color: black !important;
+    left: 0px !important;
+}
+
+.list-swatch-items .lh-swatch-select:hover {
+    border-radius: 20px !important;
+    background-color: #0044C2 !important;
+}
+
+.list-swatch-items span:hover {
+    color: white !important;
+}
+
+.list-swatch-items.active span {
+    color: black !important;
+}
+
+.lh-swatch-select.active {
+    background-color: #0044C2 !important;
+}
+
+.lh-swatch-select:not(.active) {
+    background-color: white !important;
+}
+
+.lh-swatch-select.active span {
+    color: white !important;
+}

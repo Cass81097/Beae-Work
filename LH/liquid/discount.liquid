@@ -1,0 +1,5 @@
+{% assign discount_percentage = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round %}
+
+{% comment %}
+  Ở đây, compare_at_price | minus: price sử dụng bộ lọc minus để trừ price khỏi compare_at_price. Sau đó, | times: 100.0 áp dụng bộ lọc times để nhân kết quả với 100, chuyển đổi nó thành tỷ lệ phần trăm. | divided_by: compare_at_price sử dụng bộ lọc divided_by để chia cho compare_at_price, và cuối cùng, | round áp dụng bộ lọc round để làm tròn kết quả.
+{% endcomment %}
