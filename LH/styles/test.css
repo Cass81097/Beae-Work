@@ -1,0 +1,11 @@
+.content .lh-item:nth-child(4) .lh-item-text {
+    width: 100% !important;
+}
+
+
+@media screen and (max-width: 767px) {
+    .lh-banner img {
+        object-fit: contain;
+        min-height: unset;
+    }
+}
