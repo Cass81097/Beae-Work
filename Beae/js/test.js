@@ -9,4 +9,26 @@ $nav.off('click', '.swiper-slide').on('click', '.swiper-slide', function () {
 
 });
 
+var images = document.querySelectorAll('.beae-xadect4j');
 
+function isInViewport(element) {
+    var rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+function showImages() {
+    images.forEach(function(image) {
+        if (isInViewport(image)) {
+            image.style.opacity = "1";
+        }
+    });
+}
+
+window.addEventListener('scroll', showImages);
+
+showImages();
