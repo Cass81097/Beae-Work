@@ -1,22 +1,45 @@
-<div class="cart-form lh-d-flex lh-flex-wrap ">
-    @if(section.settings.enable_external == 'no' || section.settings.external_link == '')
-        <button type="submit" class="lh-add_to_cart lh-bt lh-bt-primary" data-add-cart="@attr(lang(section.settings.trans_add_to_cart))" data-pre-order="@attr(lang(section.settings.trans_pre_order))">
-            @liquid('lang_addcart')
-        </button>
-    @else
-        <a href="@liquid('external_link')" class="lh-external lh-bt lh-bt-primary lh-col">
-            @lang(section.settings.trans_external)
-        </a>
-    @endif
-</div>
-<div class="clearfix"></div>
-@if(section.settings.enable_buynow === 'yes')
-<div class="lh-d-flex lh-flex-wrap lh-wrap-buynow">
-        <button class="lh-buy-now bt lh-bt-primary lh-bt-type_01 lh-col">
-            @lang(section.settings.trans_buynow)
-        </button>
-</div>
-@endif
-<div class="lh-block-custom lh-custom-html">@lang(section.settings.c_html_addcart)</div>
-<div class="clearfix"></div>
-</div>
+<div class="lh-call">
+    <div class="lh-container"> 
+              <div class="lh-content">
+              <h1 class="lh-title">@lang(section.settings.txt_title)</h1>
+  
+              <div class="lh-cus lh-en">
+                <p class="lh-btn">@lang(section.settings.btn_link)</p>
+            </div>
+            
+             <div class="lh-cus lh-fr">
+                <p class="lh-btn"><a href="/fr/collections/diver-200-automatic" id="languageBtn" class="lh-btn">@lang(section.settings.btn_link)</a></p>
+            </div>
+        
+        
+              <!--<div class="lh-cus">-->
+              <!--  <a href="#" id="languageBtn" class="lh-btn">@lang(section.settings.btn_link)</a>-->
+              <!--</div>-->
+          
+                  
+              <div class="lh-desc">@lang(section.settings.txt_desc)</div>
+    </div>
+  </div>
+  </div>
+  
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          var enLanguageWrapper = document.getElementById("enLanguageWrapper");
+          var frLanguageWrapper = document.getElementById("frLanguageWrapper");
+  
+        
+          var url = window.location.href.toLowerCase();
+          var isFrench = url.includes("/fr/");
+  
+         
+          if (isFrench) {
+              frLanguageWrapper.style.display = "block";
+              enLanguageWrapper.style.display = "none";
+          } else {
+              frLanguageWrapper.style.display = "none";
+              enLanguageWrapper.style.display = "block";
+          }
+      });
+  </script>
+  
+  
